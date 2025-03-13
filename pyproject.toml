@@ -27,6 +27,17 @@ classifiers = [
 ]
 keywords = ["gemini", "gif", "animation", "ai", "google", "generative", "pixel art"]
 dynamic = ["version"]
+dependencies = [
+    "Pillow>=11.0.0",
+    "google-genai>=1.5.0",
+    "loguru>=0.7.0",
+    "ffmpeg-python>=0.2.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.65.0",
+]
+
+[project.scripts]
+gemini-gif = "gemini_gif.cli:cli"
 
 [project.urls]
 "Homepage" = "https://github.com/daymade/gemini-gif"

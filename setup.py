@@ -27,19 +27,6 @@ setup(
     url="https://github.com/daymade/gemini-gif",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
-        "Pillow>=11.0.0",
-        "google-genai>=1.5.0",
-        "loguru>=0.7.0",
-        "ffmpeg-python>=0.2.0",
-        "python-dotenv>=1.0.0",
-        "tqdm>=4.65.0",
-    ],
-    entry_points={
-        "console_scripts": [
-            "gemini-gif=gemini_gif.cli:cli",
-        ],
-    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

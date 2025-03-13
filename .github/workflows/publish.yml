@@ -1,0 +1,57 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.1)'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Update version if manually triggered
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        VERSION="${{ github.event.inputs.version }}"
+        echo "Updating version to $VERSION"
+        sed -i "s/__version__ = \".*\"/__version__ = \"$VERSION\"/" gemini_gif/__init__.py
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add gemini_gif/__init__.py
+        git commit -m "Bump version to $VERSION"
+        git tag -a "v$VERSION" -m "Version $VERSION"
+    
+    - name: Build package
+      run: |
+        python -m build
+    
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        skip-existing: true
+    
+    - name: Push version update if manually triggered
+      if: github.event_name == 'workflow_dispatch'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+        tags: true 
