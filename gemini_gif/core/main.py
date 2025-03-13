@@ -1,4 +1,8 @@
-"""Main module for the Gemini GIF Generator."""
+"""Main module for the Gemini GIF Generator.
+
+This module contains the core functionality for generating animated GIFs using Google's Gemini API.
+It handles the entire process from prompt creation to frame generation and GIF assembly.
+"""
 
 import os
 import uuid
@@ -11,6 +15,13 @@ from gemini_gif.core import config, generator, processor
 def run(args):
     """Run the GIF generation process.
     
+    This function orchestrates the entire GIF generation workflow:
+    1. Sets up logging
+    2. Validates and retrieves the API key
+    3. Initializes the Gemini client
+    4. Constructs the prompt and generates frames
+    5. Processes the frames and creates the final GIF
+    
     Args:
         args (argparse.Namespace): Parsed command-line arguments.
     
@@ -18,7 +29,7 @@ def run(args):
         str: Path to the generated GIF, or None if generation failed.
     """
     # Set up logging
-    config.setup_logger(args.log_file)
+    config.setup_logger(args.log_file, verbose=args.verbose)
     
     # Get API key
     api_key = config.get_api_key(args)
@@ -50,7 +61,7 @@ def run(args):
         log.info(f"Created temporary directory at {temp_dir}")
         
         # Extract frames from the response
-        frame_paths, _ = processor.extract_frames(response, temp_dir)
+        frame_paths, text_content = processor.extract_frames(response, temp_dir)
         
         # If we have frames, create a GIF using ffmpeg
         if frame_paths:
@@ -63,16 +74,65 @@ def run(args):
             
             log.info(f"Will save animation to {output_path}")
             
-            # List all files in the temp directory to verify
-            log.info(f"Files in temp directory: {os.listdir(temp_dir)}")
-            
             # Create the GIF
             if processor.create_gif_from_frames(frame_paths, output_path, args.framerate):
-                # Open the resulting GIF
-                processor.open_gif(output_path)
+                log.success(f"Animation successfully saved to {output_path}")
+                file_size = os.path.getsize(output_path)
+                log.info(f"File size: {file_size / 1024:.2f} KB")
+                
+                # Open the resulting GIF if requested
+                if not args.no_preview:
+                    processor.open_gif(output_path)
+                
                 return output_path
         else:
             log.warning("No frames were generated, cannot create animation")
     
     log.info("Script completed")
-    return None 
+    return None
+
+def generate_animation(api_key, subject, style, framerate=2, output_path=None, 
+                      max_retries=3, model="models/gemini-2.0-flash-exp", 
+                      template=None, verbose=False, no_preview=False):
+    """Generate an animated GIF using the Gemini API.
+    
+    This is a simplified function for programmatic usage that doesn't require creating
+    an argparse.Namespace object manually.
+    
+    Args:
+        api_key (str): Google Gemini API key.
+        subject (str): Subject of the animation.
+        style (str): Style of the animation.
+        framerate (int, optional): Frames per second for the output GIF. Defaults to 2.
+        output_path (str, optional): Output file path. Defaults to animation_<uuid>.gif.
+        max_retries (int, optional): Maximum number of retries for generating frames. Defaults to 3.
+        model (str, optional): Gemini model to use. Defaults to "models/gemini-2.0-flash-exp".
+        template (str, optional): Template for the prompt. If None, uses the default template.
+        verbose (bool, optional): Enable verbose output. Defaults to False.
+        no_preview (bool, optional): Disable automatic preview of the generated GIF. Defaults to False.
+    
+    Returns:
+        str: Path to the generated GIF, or None if generation failed.
+    """
+    import argparse
+    
+    # Create an argparse.Namespace object with the provided parameters
+    if template is None:
+        template = config.DEFAULT_TEMPLATE
+        
+    args = argparse.Namespace(
+        api_key=api_key,
+        subject=subject,
+        style=style,
+        template=template,
+        framerate=framerate,
+        output=output_path,
+        max_retries=max_retries,
+        model=model,
+        log_file="gemini_gif_generator.log",
+        verbose=verbose,
+        no_preview=no_preview
+    )
+    
+    # Run the main process
+    return run(args) 

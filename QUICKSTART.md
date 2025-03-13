@@ -54,6 +54,15 @@ gemini-gif
 
 # 使用自定义主题和风格生成 GIF
 gemini-gif --subject "一个跳舞的机器人" --style "霓虹赛博朋克风格"
+
+# 保存到特定的输出文件
+gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
+
+# 启用详细输出以获取更多日志信息
+gemini-gif --verbose
+
+# 禁用自动预览生成的 GIF
+gemini-gif --no-preview
 ```
 
 ## 命令行选项
@@ -74,6 +83,7 @@ gemini-gif --help
 - `--model`: 使用的 Gemini 模型（默认："models/gemini-2.0-flash-exp"）
 - `--log-file`: 日志文件路径（默认：gemini_gif_generator.log）
 - `--verbose`: 启用详细输出
+- `--no-preview`: 禁用自动预览生成的 GIF
 
 ## 示例
 
@@ -88,8 +98,36 @@ gemini-gif --subject "一枚火箭发射到太空" --style "复古科幻风格" 
 gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
 ```
 
+## 编程使用
+
+如果你想在自己的 Python 代码中使用 gemini-gif，可以使用以下方式：
+
+```python
+import os
+from dotenv import load_dotenv
+from gemini_gif.core.main import generate_animation
+
+# 从 .env 文件加载 API 密钥
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+
+# 生成动画
+result = generate_animation(
+    api_key=api_key,
+    subject="一只蝴蝶从茧中羽化",
+    style="水彩画风格",
+    output_path="butterfly_animation.gif",
+    framerate=2,
+    verbose=True
+)
+
+if result:
+    print(f"动画成功生成于 {result}")
+```
+
 ## 故障排除
 
 - 如果你遇到 Gemini API 问题，请检查你的 API 密钥并确保你有权访问 Gemini 2.0 Flash 模型。
 - 如果 FFmpeg 失败，请确保它已正确安装并可在 PATH 中访问。
-- 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。 
+- 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。
+- 使用 `--verbose` 参数启用详细输出，以获取更多调试信息。 

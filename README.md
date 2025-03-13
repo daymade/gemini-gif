@@ -9,10 +9,26 @@ A Python tool that uses Google's Gemini API to generate animated GIFs from text 
 - Generate animated GIFs using Google's Gemini 2.0 Flash model
 - Customize animation subject, style, and frame rate
 - Automatic retry logic to ensure multiple frames are generated
-- Command-line interface with customizable parameters
+- **Simple command-line interface** for quick and easy use
 - Support for storing API key in .env file for convenience
 - Progress bars for better user experience
 - Programmatic API for integration into other projects
+
+## Quick Start
+
+```bash
+# Install the package
+pip install gemini-gif
+
+# Set your API key (one-time setup)
+echo "GEMINI_API_KEY=your_api_key_here" > .env
+
+# Generate a GIF with default settings (dancing cat in pixel art style)
+gemini-gif
+
+# Generate a GIF with custom subject and style
+gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
+```
 
 ## Requirements
 
@@ -29,32 +45,6 @@ A Python tool that uses Google's Gemini API to generate animated GIFs from text 
 pip install gemini-gif
 ```
 
-### From Source
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/gemini-gif.git
-cd gemini-gif
-
-# Install in development mode
-pip install -e .
-```
-
-### Using Conda Environment
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/gemini-gif.git
-cd gemini-gif
-
-# Create and activate the conda environment from the environment.yml file
-conda env create -f environment.yml
-conda activate gemini-gif
-
-# Install in development mode
-pip install -e .
-```
-
 ### System Requirements
 
 Make sure FFmpeg is installed on your system:
@@ -69,7 +59,7 @@ You can provide your Gemini API key in several ways:
 
 ### Using a .env File (Recommended)
 
-Create a file named `.env` in the project directory with the following content:
+Create a file named `.env` in your current directory with the following content:
 
 ```
 GEMINI_API_KEY=your_api_key_here
@@ -91,11 +81,9 @@ export GEMINI_API_KEY="your_api_key_here"
 gemini-gif --api-key "your_api_key_here" --subject "your subject"
 ```
 
-## Usage
+## Command-line Usage
 
-### Using the Command-line Interface
-
-After installation, you can use the `gemini-gif` command:
+The command-line interface is the easiest way to use Gemini GIF Generator:
 
 ```bash
 # Generate a GIF with default settings (dancing cat in pixel art style)
@@ -103,18 +91,15 @@ gemini-gif
 
 # Generate a GIF with custom subject and style
 gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
-```
 
-### Using the Shell Script
+# Save to a specific output file
+gemini-gif --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
 
-For convenience, you can use the provided shell script (if you installed from source):
+# Enable verbose output for more detailed logs
+gemini-gif --verbose
 
-```bash
-# Generate a GIF with default settings
-./generate_gif.sh
-
-# Generate a GIF with custom subject and style
-./generate_gif.sh --subject "a dancing robot" --style "in a neon cyberpunk style"
+# Disable automatic preview of the generated GIF
+gemini-gif --no-preview
 ```
 
 ### Command-line Options
@@ -135,6 +120,7 @@ Available options:
 - `--model`: Gemini model to use (default: "models/gemini-2.0-flash-exp")
 - `--log-file`: Path to the log file (default: gemini_gif_generator.log)
 - `--verbose`: Enable verbose output
+- `--no-preview`: Disable automatic preview of the generated GIF
 
 ### Examples
 
@@ -149,95 +135,41 @@ gemini-gif --subject "a rocket launching into space" --style "in a retro sci-fi 
 gemini-gif --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
 ```
 
-### Programmatic Usage
+## Programmatic Usage
 
 You can also use the package programmatically in your own Python code:
 
 ```python
 import os
-import tempfile
-from gemini_gif.core import config, generator, processor
+from dotenv import load_dotenv
+from gemini_gif.core.main import generate_animation
 
-# Set up logging and load environment variables
-config.setup_logger()
-config.load_env_variables()
+# Load API key from .env file
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
 
-# Get API key from environment
-api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    raise ValueError("No API key found. Please set the GEMINI_API_KEY environment variable.")
+# Generate the animation
+result = generate_animation(
+    api_key=api_key,
+    subject="a butterfly emerging from a cocoon",
+    style="in a watercolor painting style",
+    output_path="butterfly_animation.gif",
+    framerate=2,
+    verbose=True
+)
 
-# Initialize Gemini client
-client = generator.initialize_client(api_key)
-
-# Construct the prompt
-subject = "A cute dancing cat"
-style = "in a 8-bit pixel art style"
-prompt = f"{config.DEFAULT_TEMPLATE} {subject} {style}"
-print(f"Using prompt: {prompt}")
-
-# Generate frames
-response = generator.generate_frames(client, prompt)
-
-# Create a temporary directory to store the frames
-with tempfile.TemporaryDirectory() as temp_dir:
-    # Extract frames from the response
-    frame_paths, text_content = processor.extract_frames(response, temp_dir)
-    
-    # Create the GIF
-    output_path = "my_animation.gif"
-    if frame_paths:
-        if processor.create_gif_from_frames(frame_paths, output_path):
-            print(f"GIF created successfully: {output_path}")
-            processor.open_gif(output_path)
+if result:
+    print(f"Animation successfully generated at {result}")
 ```
 
 See the `examples/programmatic_usage.py` file for a complete example.
-
-## Development
-
-### Project Structure
-
-```
-gemini-gif/
-├── gemini_gif/              # Main package
-│   ├── __init__.py          # Package initialization
-│   ├── cli.py               # Command-line interface
-│   └── core/                # Core functionality
-│       ├── __init__.py
-│       ├── config.py        # Configuration handling
-│       ├── generator.py     # Frame generation
-│       ├── main.py          # Main process
-│       └── processor.py     # Frame processing and GIF creation
-├── tests/                   # Test directory
-│   ├── __init__.py
-│   └── test_config.py       # Tests for config module
-├── examples/                # Example scripts
-│   └── programmatic_usage.py # Example of programmatic usage
-├── .env                     # Environment variables (not in git)
-├── .gitignore               # Git ignore file
-├── LICENSE                  # MIT License
-├── README.md                # This file
-├── environment.yml          # Conda environment file
-├── pyproject.toml           # Python project configuration
-└── setup.py                 # Package setup script
-```
-
-### Running Tests
-
-```bash
-# Install test dependencies
-pip install pytest
-
-# Run tests
-pytest
-```
 
 ## Troubleshooting
 
 - If you encounter issues with the Gemini API, check your API key and ensure you have access to the Gemini 2.0 Flash model.
 - If FFmpeg fails, ensure it's properly installed and accessible in your PATH.
 - For any other issues, check the log file (`gemini_gif_generator.log`) for detailed error messages.
+- Enable verbose output with `--verbose` for more detailed logs.
 
 ## License
 

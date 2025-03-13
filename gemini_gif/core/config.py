@@ -1,4 +1,8 @@
-"""Configuration module for the Gemini GIF Generator."""
+"""Configuration module for the Gemini GIF Generator.
+
+This module handles configuration settings, command-line argument parsing,
+environment variable loading, and logger setup for the Gemini GIF Generator.
+"""
 
 import os
 import argparse
@@ -14,25 +18,34 @@ DEFAULT_FRAMERATE = 2
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_MODEL = "models/gemini-2.0-flash-exp"
 
-def setup_logger(log_file="gemini_gif_generator.log"):
+def setup_logger(log_file="gemini_gif_generator.log", verbose=False):
     """Configure the logger with appropriate settings.
     
     Args:
         log_file (str): Path to the log file.
+        verbose (bool): Whether to enable verbose output.
     """
     log.remove()  # Remove default handler
+    
+    # File logger - always at DEBUG level
     log.add(
         log_file,
         rotation="10 MB",
         retention="1 week",
-        level="INFO",
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+        level="DEBUG",
+        format="{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {name}:{function}:{line} - {message}"
     )
+    
+    # Console logger - level depends on verbose flag
+    console_level = "DEBUG" if verbose else "INFO"
     log.add(
         lambda msg: print(msg),
-        level="INFO",
+        level=console_level,
         format="{level} | {message}"
     )
+    
+    if verbose:
+        log.debug("Verbose logging enabled")
 
 def load_env_variables(env_file=None):
     """Load environment variables from .env file if it exists.
@@ -88,6 +101,7 @@ def parse_arguments():
     parser.add_argument("--log-file", type=str, default="gemini_gif_generator.log",
                         help="Path to the log file (default: gemini_gif_generator.log)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
+    parser.add_argument("--no-preview", action="store_true", help="Disable automatic preview of the generated GIF")
     
     return parser.parse_args()
 
