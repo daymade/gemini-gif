@@ -2,6 +2,38 @@
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "gemini-gif"
+description = "A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Gemini GIF Generator Contributors", email = "your.email@example.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Utilities",
+    "Topic :: Artistic Software",
+    "Operating System :: OS Independent",
+]
+keywords = ["gemini", "gif", "animation", "ai", "google", "generative", "pixel art"]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/daymade/gemini-gif"
+"Bug Tracker" = "https://github.com/daymade/gemini-gif/issues"
+"Documentation" = "https://github.com/daymade/gemini-gif#readme"
+"Source Code" = "https://github.com/daymade/gemini-gif"
+
 [tool.black]
 line-length = 88
 target-version = ["py310"]
