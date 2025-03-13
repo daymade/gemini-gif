@@ -9,6 +9,9 @@
 
 A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts.
 
+![animation_6b77c2c1-8e37-4775-af39-a45fecd4c046](https://github.com/user-attachments/assets/4555adee-4dc6-40f7-ac82-fc07425a51ce)
+![butterfly_animation](https://github.com/user-attachments/assets/ce1630b6-07e2-48b9-874e-7b95fe0cffdd)
+
 > 🙏 Inspired by [@Miyamura80's gist](https://gist.github.com/Miyamura80/b593041f19875445ca1374599d219387)
 
 [English](#features) | [中文](#功能特点)
