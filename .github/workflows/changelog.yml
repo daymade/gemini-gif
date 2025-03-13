@@ -1,0 +1,121 @@
+name: Update Changelog
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to update in changelog (e.g., 0.1.1)'
+        required: true
+      type:
+        description: 'Release type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install gitpython
+    
+    - name: Generate changelog entry
+      id: changelog
+      run: |
+        VERSION="${{ github.event.inputs.version }}"
+        TODAY=$(date +%Y-%m-%d)
+        
+        # Get commits since last tag
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        
+        if [ -z "$LAST_TAG" ]; then
+          COMMITS=$(git log --pretty=format:"- %s" --no-merges)
+        else
+          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+        fi
+        
+        # Categorize commits
+        ADDED=$(echo "$COMMITS" | grep -i "add\|feature\|new" || echo "")
+        FIXED=$(echo "$COMMITS" | grep -i "fix\|bug\|issue" || echo "")
+        CHANGED=$(echo "$COMMITS" | grep -i "change\|update\|improve\|refactor" || echo "")
+        
+        # Create changelog entry
+        ENTRY="## [$VERSION] - $TODAY\n\n"
+        
+        if [ ! -z "$ADDED" ]; then
+          ENTRY="${ENTRY}### Added\n${ADDED}\n\n"
+        fi
+        
+        if [ ! -z "$FIXED" ]; then
+          ENTRY="${ENTRY}### Fixed\n${FIXED}\n\n"
+        fi
+        
+        if [ ! -z "$CHANGED" ]; then
+          ENTRY="${ENTRY}### Changed\n${CHANGED}\n\n"
+        fi
+        
+        # Save entry to file
+        echo -e "$ENTRY" > changelog_entry.md
+        
+        # Update CHANGELOG.md
+        if [ -f "CHANGELOG.md" ]; then
+          # Extract header (everything before the first version entry)
+          HEADER=$(sed -n '/^## \[/q;p' CHANGELOG.md)
+          
+          # Combine header, new entry, and existing content
+          {
+            echo "$HEADER"
+            cat changelog_entry.md
+            sed -n '/^## \[/,$p' CHANGELOG.md
+          } > CHANGELOG.md.new
+          
+          mv CHANGELOG.md.new CHANGELOG.md
+        else
+          # Create new CHANGELOG.md
+          {
+            echo "# Changelog"
+            echo ""
+            echo "All notable changes to this project will be documented in this file."
+            echo ""
+            echo "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),"
+            echo "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)."
+            echo ""
+            cat changelog_entry.md
+          } > CHANGELOG.md
+        fi
+    
+    - name: Update version in __init__.py
+      run: |
+        VERSION="${{ github.event.inputs.version }}"
+        sed -i "s/__version__ = \".*\"/__version__ = \"$VERSION\"/" gemini_gif/__init__.py
+    
+    - name: Commit changes
+      run: |
+        VERSION="${{ github.event.inputs.version }}"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add CHANGELOG.md gemini_gif/__init__.py
+        git commit -m "Bump version to $VERSION and update changelog"
+        git tag -a "v$VERSION" -m "Version $VERSION"
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+        tags: true 
