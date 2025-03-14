@@ -51,6 +51,9 @@ Thumbs.db
 *.jpeg
 .env
 
+# Exception for documentation images
+!docs/images/*.png
+
 # Logs
 *.log
 logs/
