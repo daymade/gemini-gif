@@ -27,6 +27,20 @@ A Python tool that uses Google's Gemini API to generate animated GIFs from text 
 - Progress bars for better user experience
 - Programmatic API for integration into other projects
 
+## Documentation
+
+Comprehensive documentation is available to help you understand and extend the project:
+
+- [Architecture Documentation](docs/ARCHITECTURE.md) - Detailed overview of the system design, component relationships, and data flow
+- [Release Guide](RELEASE.md) - Instructions for releasing new versions of the package
+- [Changelog](CHANGELOG.md) - History of changes and version updates
+
+### Architecture Overview
+
+![System Overview](docs/images/system_overview.png)
+
+*High-level system overview showing the main components and their interactions.*
+
 ## Quick Start
 
 ```bash
@@ -215,6 +229,20 @@ This project is open source and available under the MIT License.
 - 进度条提供更好的用户体验
 - 提供编程 API，可集成到其他项目中
 
+## 文档
+
+我们提供了全面的文档，帮助您理解和扩展项目：
+
+- [架构文档](docs/ARCHITECTURE.md) - 系统设计、组件关系和数据流的详细概述
+- [发布指南](RELEASE.md) - 发布包新版本的说明
+- [更新日志](CHANGELOG.md) - 变更历史和版本更新记录
+
+### 架构概览
+
+![系统概览](docs/images/system_overview.png)
+
+*高级系统概览，展示了主要组件及其交互。*
+
 ## 快速开始
 
 ```bash
@@ -372,6 +400,6 @@ if result:
 - 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。
 - 使用 `--verbose` 参数启用详细输出，以获取更多调试信息。
 
-## 许可证
+## License
 
 本项目是开源的，根据 MIT 许可证提供。 
