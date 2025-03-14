@@ -86,40 +86,40 @@ flowchart TB
         <h2>Component Architecture</h2>
         <p>Save as: <code>component_architecture.png</code></p>
         <div class="mermaid">
-classDiagram
-    class CLI {
-        +cli()
-    }
-    
-    class Main {
-        +run(args)
-        +generate_animation(api_key, subject, style, ...)
-    }
-    
-    class Config {
-        +setup_logger(log_file, verbose)
-        +load_env_variables(env_file)
-        +parse_arguments()
-        +get_api_key(args)
-    }
-    
-    class Generator {
-        +initialize_client(api_key)
-        +generate_frames(client, prompt, model, max_retries)
-    }
-    
-    class Processor {
-        +extract_frames(response, temp_dir)
-        +create_gif_from_frames(frame_paths, output_path, framerate)
-        +open_gif(output_path)
-    }
-    
-    CLI --> Main : calls
-    Main --> Config : uses
-    Main --> Generator : uses
-    Main --> Processor : uses
-    Generator --> "Google Gemini API" : calls
-    Processor --> "FFmpeg" : calls
+            classDiagram
+            class CLI {
+                +cli()
+            }
+            
+            class Main {
+                +run(args)
+                +generate_animation(api_key, subject, style, ...)
+            }
+            
+            class Config {
+                +setup_logger(log_file, verbose)
+                +load_env_variables(env_file)
+                +parse_arguments()
+                +get_api_key(args)
+            }
+            
+            class Generator {
+                +initialize_client(api_key)
+                +generate_frames(client, prompt, model, max_retries)
+            }
+            
+            class Processor {
+                +extract_frames(response, temp_dir)
+                +create_gif_from_frames(frame_paths, output_path, framerate)
+                +open_gif(output_path)
+            }
+            
+            CLI --> Main : calls
+            Main --> Config : uses
+            Main --> Generator : uses
+            Main --> Processor : uses
+            Generator --> Google Gemini API : calls
+            Processor --> FFmpeg : calls
         </div>
     </div>
     
