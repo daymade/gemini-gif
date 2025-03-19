@@ -18,7 +18,7 @@ flowchart TB
         
         Config --> EnvVars[(Environment Variables)]
         Generator --> GeminiAPI[Gemini API]
-        Processor --> FFmpeg[FFmpeg]
+        Processor --> ImageIO[ImageIO]
     end
     
     GeminiAPI --> GoogleAI([Google AI])
@@ -29,7 +29,7 @@ flowchart TB
     classDef data fill:#ffa,stroke:#333,stroke-width:1px
     
     class User,GoogleAI,OutputGIF external
-    class CLI,Main,Config,Generator,Processor,GeminiAPI,FFmpeg component
+    class CLI,Main,Config,Generator,Processor,GeminiAPI,ImageIO component
     class EnvVars data
 ```
 
@@ -69,7 +69,7 @@ classDiagram
     Main --> Generator : uses
     Main --> Processor : uses
     Generator --> "Google Gemini API" : calls
-    Processor --> "FFmpeg" : calls
+    Processor --> "ImageIO" : calls
 ```
 
 ## Data Flow

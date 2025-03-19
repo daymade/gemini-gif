@@ -60,7 +60,6 @@ gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
 ## Requirements
 
 - Python 3.10+
-- FFmpeg (system installation)
 - Google Gemini API key
 
 ## Installation
@@ -73,12 +72,6 @@ pip install gemini-gif
 ```
 
 ### System Requirements
-
-Make sure FFmpeg is installed on your system:
-
-- **macOS**: `brew install ffmpeg`
-- **Ubuntu/Debian**: `sudo apt-get install ffmpeg`
-- **Windows**: Download from [FFmpeg website](https://ffmpeg.org/download.html) or use Chocolatey: `choco install ffmpeg`
 
 ## API Key Setup
 
@@ -194,7 +187,6 @@ See the `examples/programmatic_usage.py` file for a complete example.
 ## Troubleshooting
 
 - If you encounter issues with the Gemini API, check your API key and ensure you have access to the Gemini 2.0 Flash model.
-- If FFmpeg fails, ensure it's properly installed and accessible in your PATH.
 - For any other issues, check the log file (`gemini_gif_generator.log`) for detailed error messages.
 - Enable verbose output with `--verbose` for more detailed logs.
 
@@ -262,7 +254,6 @@ gemini-gif --subject "一个跳舞的机器人" --style "霓虹赛博朋克风�
 ## 系统要求
 
 - Python 3.10+
-- FFmpeg（系统安装）
 - Google Gemini API 密钥
 
 ## 安装
@@ -275,12 +266,6 @@ pip install gemini-gif
 ```
 
 ### 系统要求
-
-确保你的系统上安装了 FFmpeg：
-
-- **macOS**: `brew install ffmpeg`
-- **Ubuntu/Debian**: `sudo apt-get install ffmpeg`
-- **Windows**: 从 [FFmpeg 网站](https://ffmpeg.org/download.html) 下载或使用 Chocolatey: `choco install ffmpeg`
 
 ## API 密钥设置
 
@@ -396,7 +381,6 @@ if result:
 ## 故障排除
 
 - 如果你遇到 Gemini API 问题，请检查你的 API 密钥并确保你有权访问 Gemini 2.0 Flash 模型。
-- 如果 FFmpeg 失败，请确保它已正确安装并可在 PATH 中访问。
 - 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。
 - 使用 `--verbose` 参数启用详细输出，以获取更多调试信息。
 
