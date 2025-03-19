@@ -79,15 +79,14 @@ def create_gif_from_frames(frame_paths, output_path, framerate=2):
         duration = 1 / framerate  # Duration per frame in seconds
         images = []
 
-        # Read each frame, resize to match the first frame's dimensions, and append to the images list
+        # Read first frame and calculate target size with 480px width
         base_image = Image.open(frame_paths[0])
-        base_size = base_image.size  # Get dimensions of the first frame
+        ratio = 320 / base_image.size[0]
+        target_size = (320, int(base_image.size[1] * ratio))
 
         for frame_path in tqdm(frame_paths, desc='Reading frames', unit='frame'):
             frame = Image.open(frame_path)
-            if frame.size != base_size:
-                log.warning(f'Resizing frame {frame_path} from {frame.size} to {base_size}')
-                frame = frame.resize(base_size, Image.LANCZOS)
+            frame = frame.resize(target_size, Image.LANCZOS)
             images.append(np.array(frame))
 
         # Save the GIF
