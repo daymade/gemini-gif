@@ -10,14 +10,6 @@
 pip install gemini-gif
 ```
 
-### 系统要求
-
-确保你的系统上安装了 FFmpeg：
-
-- **macOS**: `brew install ffmpeg`
-- **Ubuntu/Debian**: `sudo apt-get install ffmpeg`
-- **Windows**: 从 [FFmpeg 网站](https://ffmpeg.org/download.html) 下载或使用 Chocolatey: `choco install ffmpeg`
-
 ## 设置 API 密钥
 
 你需要一个 Google Gemini API 密钥才能使用这个工具。有几种方式可以提供 API 密钥：
@@ -128,6 +120,5 @@ if result:
 ## 故障排除
 
 - 如果你遇到 Gemini API 问题，请检查你的 API 密钥并确保你有权访问 Gemini 2.0 Flash 模型。
-- 如果 FFmpeg 失败，请确保它已正确安装并可在 PATH 中访问。
 - 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。
 - 使用 `--verbose` 参数启用详细输出，以获取更多调试信息。 

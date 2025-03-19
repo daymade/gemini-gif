@@ -63,7 +63,7 @@ def run(args):
         # Extract frames from the response
         frame_paths, text_content = processor.extract_frames(response, temp_dir)
         
-        # If we have frames, create a GIF using ffmpeg
+        # If we have frames, create a GIF using ImageIO
         if frame_paths:
             log.info(f"Found {len(frame_paths)} frames to process")
             
