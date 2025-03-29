@@ -92,7 +92,7 @@ The Generator module is responsible for interacting with the Gemini API:
 The Processor module handles the processing of generated frames:
 - Extracts frames from API responses
 - Saves frames to temporary files
-- Creates GIFs from frame sequences
+- Creates GIFs from frame sequences using imageio for better compatibility
 - Handles image processing and optimization
 - Opens the generated GIF for preview
 

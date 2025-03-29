@@ -20,6 +20,7 @@ A Python tool that uses Google's Gemini API to generate animated GIFs from text 
 ## Features
 
 - Generate animated GIFs using Google's Gemini 2.0 Flash model
+- Improved GIF generation with imageio for better compatibility and reliability
 - Customize animation subject, style, and frame rate
 - Automatic retry logic to ensure multiple frames are generated
 - **Simple command-line interface** for quick and easy use
@@ -34,6 +35,7 @@ Comprehensive documentation is available to help you understand and extend the p
 - [Architecture Documentation](docs/ARCHITECTURE.md) - Detailed overview of the system design, component relationships, and data flow
 - [Release Guide](RELEASE.md) - Instructions for releasing new versions of the package
 - [Changelog](CHANGELOG.md) - History of changes and version updates
+  - **Latest (0.1.2)**: Improved GIF generation with imageio for better compatibility
 
 ### Architecture Overview
 
@@ -214,6 +216,7 @@ This project is open source and available under the MIT License.
 ## 功能特点
 
 - 使用 Google Gemini 2.0 Flash 模型生成动画 GIF
+- 改进的 GIF 生成与 imageio 更好的兼容性和可靠性
 - 自定义动画主题、风格和帧率
 - 自动重试逻辑确保生成多个帧
 - **简单的命令行界面**，使用快速方便
@@ -228,6 +231,7 @@ This project is open source and available under the MIT License.
 - [架构文档](docs/ARCHITECTURE.md) - 系统设计、组件关系和数据流的详细概述
 - [发布指南](RELEASE.md) - 发布包新版本的说明
 - [更新日志](CHANGELOG.md) - 变更历史和版本更新记录
+  - **最新 (0.1.2)**: 改进的 GIF 生成与 imageio 更好的兼容性和可靠性
 
 ### 架构概览
 

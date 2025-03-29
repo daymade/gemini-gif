@@ -1,1 +1,1 @@
-"""Core functionality for the Gemini GIF Generator.""" 
+"""Core functionality for the Gemini GIF Generator."""

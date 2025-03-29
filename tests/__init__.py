@@ -1,1 +1,1 @@
-"""Tests for the Gemini GIF Generator package.""" 
+"""Tests for the Gemini GIF Generator package."""
