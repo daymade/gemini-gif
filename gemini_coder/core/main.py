@@ -140,7 +140,7 @@ def generate_animation(
         output=output_path,
         max_retries=max_retries,
         model=model,
-        log_file="gemini_gif_generator.log",
+        log_file="gemini_coder.log",
         verbose=verbose,
         no_preview=no_preview,
     )

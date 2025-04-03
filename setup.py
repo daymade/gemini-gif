@@ -24,7 +24,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Gemini GIF Generator Contributors",
     author_email="your.email@example.com",
-    url="https://github.com/daymade/gemini-gif",
+    url="https://github.com/daymade/gemini-coder",
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
@@ -44,8 +44,8 @@ setup(
     keywords="gemini, gif, animation, ai, google, generative, animation, pixel art",
     python_requires=">=3.10",
     project_urls={
-        "Bug Reports": "https://github.com/daymade/gemini-gif/issues",
-        "Source": "https://github.com/daymade/gemini-gif",
-        "Documentation": "https://github.com/daymade/gemini-gif#readme",
+        "Bug Reports": "https://github.com/daymade/gemini-coder/issues",
+        "Source": "https://github.com/daymade/gemini-coder",
+        "Documentation": "https://github.com/daymade/gemini-coder#readme",
     },
 ) 

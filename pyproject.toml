@@ -37,13 +37,13 @@ dependencies = [
 ]
 
 [project.scripts]
-gemini-gif = "gemini_gif.cli:cli"
+gemini-coder = "gemini_coder.cli:cli"
 
 [project.urls]
-"Homepage" = "https://github.com/daymade/gemini-gif"
-"Bug Tracker" = "https://github.com/daymade/gemini-gif/issues"
-"Documentation" = "https://github.com/daymade/gemini-gif#readme"
-"Source Code" = "https://github.com/daymade/gemini-gif"
+"Homepage" = "https://github.com/daymade/gemini-coder"
+"Bug Tracker" = "https://github.com/daymade/gemini-coder/issues"
+"Documentation" = "https://github.com/daymade/gemini-coder#readme"
+"Source Code" = "https://github.com/daymade/gemini-coder"
 
 [tool.black]
 line-length = 88
