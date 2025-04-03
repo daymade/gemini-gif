@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
-from gemini_coder.core.main import generate_animation
+from gemini_coder.core import main, config
 from loguru import logger
 
 # Add the parent directory to the Python path
@@ -42,14 +42,15 @@ output_path = "butterfly_animation.gif"  # 输出文件路径
 logger.info(f"Generating animation of '{subject}' {style}")
 logger.info(f"正在生成 '{subject}' {style} 的动画")
 
-result = generate_animation(
+result = main.generate_animation(
     api_key=api_key,
     subject=subject,
     style=style,
     framerate=2,
     output_path=output_path,
     max_retries=3,
-    verbose=True
+    verbose=True,
+    log_file="gemini_coder.log"
 )
 
 # Check the result

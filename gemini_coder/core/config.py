@@ -20,7 +20,7 @@ DEFAULT_MAX_RETRIES = 3
 DEFAULT_MODEL = "models/gemini-2.0-flash-exp"
 
 
-def setup_logger(log_file="gemini_gif_generator.log", verbose=False):
+def setup_logger(log_file="gemini_coder.log", verbose=False):
     """Configure the logger with appropriate settings.
 
     Args:
@@ -127,9 +127,8 @@ def parse_arguments():
     )
     parser.add_argument(
         "--log-file",
-        type=str,
-        default="gemini_gif_generator.log",
-        help="Path to the log file (default: gemini_gif_generator.log)",
+        default="gemini_coder.log",
+        help="Path to the log file (default: gemini_coder.log)",
     )
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
     parser.add_argument(

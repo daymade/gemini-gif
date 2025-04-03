@@ -5,7 +5,7 @@ import os
 import re
 
 # Read the version from __init__.py
-with open(os.path.join("gemini_gif", "__init__.py"), "r") as f:
+with open(os.path.join("gemini_coder", "__init__.py"), "r") as f:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", f.read(), re.M)
     if version_match:
         version = version_match.group(1)
@@ -22,7 +22,7 @@ setup(
     description="A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Gemini GIF Generator Contributors",
+    author="Gemini Coder Contributors",
     author_email="your.email@example.com",
     url="https://github.com/daymade/gemini-coder",
     packages=find_packages(),

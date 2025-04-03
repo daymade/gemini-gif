@@ -12,4 +12,4 @@ else
 fi
 
 # Run the script with all provided arguments
-python -m gemini_gif.cli "$@" 
+python -m gemini_coder.cli "$@" 
