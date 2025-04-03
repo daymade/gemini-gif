@@ -3,13 +3,13 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gemini-gif"
+name = "gemini-coder"
 description = "A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Gemini GIF Generator Contributors", email = "your.email@example.com"}
+    {name = "Gemini Coder Contributors", email = "your.email@example.com"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

@@ -1,11 +1,11 @@
-# Gemini GIF Generator
+# Gemini Coder
 
-[![PyPI version](https://img.shields.io/pypi/v/gemini-gif.svg)](https://pypi.org/project/gemini-gif/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/gemini-gif.svg)](https://pypi.org/project/gemini-gif/)
+[![PyPI version](https://img.shields.io/pypi/v/gemini-coder.svg)](https://pypi.org/project/gemini-coder/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/gemini-coder.svg)](https://pypi.org/project/gemini-coder/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://static.pepy.tech/badge/gemini-gif)](https://pepy.tech/project/gemini-gif)
-[![GitHub stars](https://img.shields.io/github/stars/daymade/gemini-gif.svg)](https://github.com/daymade/gemini-gif/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/daymade/gemini-gif.svg)](https://github.com/daymade/gemini-gif/issues)
+[![Downloads](https://static.pepy.tech/badge/gemini-coder)](https://pepy.tech/project/gemini-coder)
+[![GitHub stars](https://img.shields.io/github/stars/daymade/gemini-coder.svg)](https://github.com/daymade/gemini-coder/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/daymade/gemini-coder.svg)](https://github.com/daymade/gemini-coder/issues)
 
 A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts.
 
@@ -47,16 +47,16 @@ Comprehensive documentation is available to help you understand and extend the p
 
 ```bash
 # Install the package
-pip install gemini-gif
+pip install gemini-coder
 
 # Set your API key (one-time setup)
 echo "GEMINI_API_KEY=your_api_key_here" > .env
 
 # Generate a GIF with default settings (dancing cat in pixel art style)
-gemini-gif
+gemini-coder
 
 # Generate a GIF with custom subject and style
-gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
+gemini-coder --subject "a dancing robot" --style "in a neon cyberpunk style"
 ```
 
 ## Requirements
@@ -70,7 +70,7 @@ gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
 
 ```bash
 # Install directly from PyPI
-pip install gemini-gif
+pip install gemini-coder
 ```
 
 ### System Requirements
@@ -100,34 +100,34 @@ export GEMINI_API_KEY="your_api_key_here"
 
 ```bash
 # Provide the API key directly as a command-line argument
-gemini-gif --api-key "your_api_key_here" --subject "your subject"
+gemini-coder --api-key "your_api_key_here" --subject "your subject"
 ```
 
 ## Command-line Usage
 
-The command-line interface is the easiest way to use Gemini GIF Generator:
+The command-line interface is the easiest way to use Gemini Coder:
 
 ```bash
 # Generate a GIF with default settings (dancing cat in pixel art style)
-gemini-gif
+gemini-coder
 
 # Generate a GIF with custom subject and style
-gemini-gif --subject "a dancing robot" --style "in a neon cyberpunk style"
+gemini-coder --subject "a dancing robot" --style "in a neon cyberpunk style"
 
 # Save to a specific output file
-gemini-gif --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
+gemini-coder --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
 
 # Enable verbose output for more detailed logs
-gemini-gif --verbose
+gemini-coder --verbose
 
 # Disable automatic preview of the generated GIF
-gemini-gif --no-preview
+gemini-coder --no-preview
 ```
 
 ### Command-line Options
 
 ```bash
-gemini-gif --help
+gemini-coder --help
 ```
 
 Available options:
@@ -140,7 +140,7 @@ Available options:
 - `--output`: Output file path (default: animation_<uuid>.gif)
 - `--max-retries`: Maximum number of retries for generating frames (default: 3)
 - `--model`: Gemini model to use (default: "models/gemini-2.0-flash-exp")
-- `--log-file`: Path to the log file (default: gemini_gif_generator.log)
+- `--log-file`: Path to the log file (default: gemini_coder_generator.log)
 - `--verbose`: Enable verbose output
 - `--no-preview`: Disable automatic preview of the generated GIF
 
@@ -148,13 +148,13 @@ Available options:
 
 ```bash
 # Generate a blooming flower animation
-gemini-gif --subject "a seed growing into a plant and then blooming into a flower" --style "in a watercolor style"
+gemini-coder --subject "a seed growing into a plant and then blooming into a flower" --style "in a watercolor style"
 
 # Create a rocket launch animation with custom frame rate
-gemini-gif --subject "a rocket launching into space" --style "in a retro sci-fi style" --framerate 3
+gemini-coder --subject "a rocket launching into space" --style "in a retro sci-fi style" --framerate 3
 
 # Save to a specific output file
-gemini-gif --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
+gemini-coder --subject "a butterfly emerging from a cocoon" --output butterfly_animation.gif
 ```
 
 ## Programmatic Usage
@@ -164,7 +164,7 @@ You can also use the package programmatically in your own Python code:
 ```python
 import os
 from dotenv import load_dotenv
-from gemini_gif.core.main import generate_animation
+from gemini_coder.core.main import generate_animation
 
 # Load API key from .env file
 load_dotenv()
@@ -189,7 +189,7 @@ See the `examples/programmatic_usage.py` file for a complete example.
 ## Troubleshooting
 
 - If you encounter issues with the Gemini API, check your API key and ensure you have access to the Gemini 2.0 Flash model.
-- For any other issues, check the log file (`gemini_gif_generator.log`) for detailed error messages.
+- For any other issues, check the log file (`gemini_coder_generator.log`) for detailed error messages.
 - Enable verbose output with `--verbose` for more detailed logs.
 
 ## License
@@ -198,14 +198,14 @@ This project is open source and available under the MIT License.
 
 ---
 
-# Gemini GIF 生成器
+# Gemini Coder
 
-[![PyPI version](https://img.shields.io/pypi/v/gemini-gif.svg)](https://pypi.org/project/gemini-gif/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/gemini-gif.svg)](https://pypi.org/project/gemini-gif/)
+[![PyPI version](https://img.shields.io/pypi/v/gemini-coder.svg)](https://pypi.org/project/gemini-coder/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/gemini-coder.svg)](https://pypi.org/project/gemini-coder/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://static.pepy.tech/badge/gemini-gif)](https://pepy.tech/project/gemini-gif)
-[![GitHub stars](https://img.shields.io/github/stars/daymade/gemini-gif.svg)](https://github.com/daymade/gemini-gif/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/daymade/gemini-gif.svg)](https://github.com/daymade/gemini-gif/issues)
+[![Downloads](https://static.pepy.tech/badge/gemini-coder)](https://pepy.tech/project/gemini-coder)
+[![GitHub stars](https://img.shields.io/github/stars/daymade/gemini-coder.svg)](https://github.com/daymade/gemini-coder/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/daymade/gemini-coder.svg)](https://github.com/daymade/gemini-coder/issues)
 
 一个使用 Google Gemini API 从文本提示生成动画 GIF 的 Python 工具。
 
@@ -243,16 +243,16 @@ This project is open source and available under the MIT License.
 
 ```bash
 # 安装包
-pip install gemini-gif
+pip install gemini-coder
 
 # 设置 API 密钥（一次性设置）
 echo "GEMINI_API_KEY=你的_API_密钥" > .env
 
 # 使用默认设置生成 GIF（像素风格的跳舞猫）
-gemini-gif
+gemini-coder
 
 # 使用自定义主题和风格生成 GIF
-gemini-gif --subject "一个跳舞的机器人" --style "霓虹赛博朋克风格"
+gemini-coder --subject "一个跳舞的机器人" --style "霓虹赛博朋克风格"
 ```
 
 ## 系统要求
@@ -266,7 +266,7 @@ gemini-gif --subject "一个跳舞的机器人" --style "霓虹赛博朋克风�
 
 ```bash
 # 直接从 PyPI 安装
-pip install gemini-gif
+pip install gemini-coder
 ```
 
 ### 系统要求
@@ -296,34 +296,34 @@ export GEMINI_API_KEY="你的_API_密钥"
 
 ```bash
 # 直接在命令行参数中提供 API 密钥
-gemini-gif --api-key "你的_API_密钥" --subject "你的主题"
+gemini-coder --api-key "你的_API_密钥" --subject "你的主题"
 ```
 
 ## 命令行使用
 
-命令行界面是使用 Gemini GIF 生成器最简单的方式：
+命令行界面是使用 Gemini Coder 最简单的方式：
 
 ```bash
 # 使用默认设置生成 GIF（像素风格的跳舞猫）
-gemini-gif
+gemini-coder
 
 # 使用自定义主题和风格生成 GIF
-gemini-gif --subject "一个跳舞的机器人" --style "霓虹赛博朋克风格"
+gemini-coder --subject "一个跳舞的机器人" --style "霓虹赛博朋克风格"
 
 # 保存到特定的输出文件
-gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
+gemini-coder --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
 
 # 启用详细输出以获取更多日志信息
-gemini-gif --verbose
+gemini-coder --verbose
 
 # 禁用自动预览生成的 GIF
-gemini-gif --no-preview
+gemini-coder --no-preview
 ```
 
 ### 命令行选项
 
 ```bash
-gemini-gif --help
+gemini-coder --help
 ```
 
 可用选项：
@@ -336,7 +336,7 @@ gemini-gif --help
 - `--output`: 输出文件路径（默认：animation_<uuid>.gif）
 - `--max-retries`: 生成帧的最大重试次数（默认：3）
 - `--model`: 使用的 Gemini 模型（默认："models/gemini-2.0-flash-exp"）
-- `--log-file`: 日志文件路径（默认：gemini_gif_generator.log）
+- `--log-file`: 日志文件路径（默认：gemini_coder_generator.log）
 - `--verbose`: 启用详细输出
 - `--no-preview`: 禁用自动预览生成的 GIF
 
@@ -344,13 +344,13 @@ gemini-gif --help
 
 ```bash
 # 生成一朵开花的动画
-gemini-gif --subject "一颗种子长成植物然后开花" --style "水彩风格"
+gemini-coder --subject "一颗种子长成植物然后开花" --style "水彩风格"
 
 # 创建一个火箭发射动画，使用自定义帧率
-gemini-gif --subject "一枚火箭发射到太空" --style "复古科幻风格" --framerate 3
+gemini-coder --subject "一枚火箭发射到太空" --style "复古科幻风格" --framerate 3
 
 # 保存到特定的输出文件
-gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
+gemini-coder --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.gif
 ```
 
 ## 编程使用
@@ -360,7 +360,7 @@ gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.
 ```python
 import os
 from dotenv import load_dotenv
-from gemini_gif.core.main import generate_animation
+from gemini_coder.core.main import generate_animation
 
 # 从 .env 文件加载 API 密钥
 load_dotenv()
@@ -385,7 +385,7 @@ if result:
 ## 故障排除
 
 - 如果你遇到 Gemini API 问题，请检查你的 API 密钥并确保你有权访问 Gemini 2.0 Flash 模型。
-- 对于任何其他问题，请查看日志文件（`gemini_gif_generator.log`）获取详细的错误信息。
+- 对于任何其他问题，请查看日志文件（`gemini_coder_generator.log`）获取详细的错误信息。
 - 使用 `--verbose` 参数启用详细输出，以获取更多调试信息。
 
 ## License

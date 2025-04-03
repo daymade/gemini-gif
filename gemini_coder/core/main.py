@@ -1,5 +1,5 @@
 """
-Main module for the Gemini GIF Generator.
+Main module for the Gemini Coder.
 This module contains the main functions for generating GIFs using Google's Gemini API.
 """
 
@@ -7,9 +7,9 @@ import os
 import tempfile
 import uuid
 
-from loguru import logger as log
+from loguru import logger
 
-from gemini_gif.core import config, generator, processor
+from gemini_coder.core import config, generator, processor
 
 
 def run(args):
@@ -34,7 +34,7 @@ def run(args):
     # Get API key
     api_key = config.get_api_key(args)
     if not api_key:
-        log.error(
+        logger.error(
             "No API key provided. Please provide it via --api-key argument or GEMINI_API_KEY environment variable."
         )
         return None
@@ -44,7 +44,7 @@ def run(args):
 
     # Construct the prompt
     contents = f"{args.template} {args.subject} {args.style}"
-    log.info(f"Using prompt: {contents}")
+    logger.info(f"Using prompt: {contents}")
 
     # Generate frames
     try:
@@ -52,34 +52,34 @@ def run(args):
             client, contents, model=args.model, max_retries=args.max_retries
         )
     except Exception as e:
-        log.error(f"Failed to generate frames: {str(e)}")
+        logger.error(f"Failed to generate frames: {str(e)}")
         return None
 
     # Create a temporary directory to store the frames
     with tempfile.TemporaryDirectory() as temp_dir:
-        log.info(f"Created temporary directory at {temp_dir}")
+        logger.info(f"Created temporary directory at {temp_dir}")
 
         # Extract frames from the response
         frame_paths, text_content = processor.extract_frames(response, temp_dir)
 
         # If we have frames, create a GIF using ImageIO
         if frame_paths:
-            log.info(f"Found {len(frame_paths)} frames to process")
+            logger.info(f"Found {len(frame_paths)} frames to process")
 
             # Determine output path
             output_path = args.output
             if not output_path:
                 output_path = os.path.abspath(f"animation_{uuid.uuid4()}.gif")
 
-            log.info(f"Will save animation to {output_path}")
+            logger.info(f"Will save animation to {output_path}")
 
             # Create the GIF
             if processor.create_gif_from_frames(
                 frame_paths, output_path, args.framerate
             ):
-                log.success(f"Animation successfully saved to {output_path}")
+                logger.success(f"Animation successfully saved to {output_path}")
                 file_size = os.path.getsize(output_path)
-                log.info(f"File size: {file_size / 1024:.2f} KB")
+                logger.info(f"File size: {file_size / 1024:.2f} KB")
 
                 # Open the resulting GIF if requested
                 if not args.no_preview:
@@ -87,9 +87,9 @@ def run(args):
 
                 return output_path
         else:
-            log.warning("No frames were generated, cannot create animation")
+            logger.warning("No frames were generated, cannot create animation")
 
-    log.info("Script completed")
+    logger.info("Script completed")
     return None
 
 

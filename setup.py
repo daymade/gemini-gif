@@ -1,4 +1,4 @@
-"""Setup script for the Gemini GIF Generator package."""
+"""Setup script for the Gemini Coder package."""
 
 from setuptools import setup, find_packages
 import os
@@ -17,7 +17,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(
-    name="gemini-gif",
+    name="gemini-coder",
     version=version,
     description="A Python tool that uses Google's Gemini API to generate animated GIFs from text prompts",
     long_description=long_description,

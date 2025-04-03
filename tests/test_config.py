@@ -3,7 +3,7 @@
 import os
 import tempfile
 
-from gemini_gif.core import config
+from gemini_coder.core import config
 
 
 def test_default_values():

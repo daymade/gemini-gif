@@ -11,9 +11,14 @@ without using the command-line interface.
 """
 
 import os
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
-from gemini_gif.core.main import generate_animation
+from gemini_coder.core.main import generate_animation
 from loguru import logger
+
+# Add the parent directory to the Python path
+sys.path.append(str(Path(__file__).parent.parent))
 
 # Load API key from .env file
 # 从 .env 文件加载 API 密钥

@@ -1,8 +1,9 @@
-"""Command-line interface for the Gemini GIF Generator."""
+"""Command-line interface for the Gemini Coder."""
 
 import sys
+from pathlib import Path
 
-from gemini_gif.core import config, main
+from gemini_coder.core import config, main
 
 
 def cli():

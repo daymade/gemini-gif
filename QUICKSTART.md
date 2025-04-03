@@ -97,24 +97,24 @@ gemini-gif --subject "一只蝴蝶从茧中羽化" --output butterfly_animation.
 ```python
 import os
 from dotenv import load_dotenv
-from gemini_gif.core.main import generate_animation
+from gemini_coder.core.main import generate_animation
 
-# 从 .env 文件加载 API 密钥
+# Load API key from .env file
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 
-# 生成动画
+# Generate the animation
 result = generate_animation(
     api_key=api_key,
-    subject="一只蝴蝶从茧中羽化",
-    style="水彩画风格",
+    subject="a butterfly emerging from a cocoon",
+    style="in a watercolor painting style",
     output_path="butterfly_animation.gif",
     framerate=2,
     verbose=True
 )
 
 if result:
-    print(f"动画成功生成于 {result}")
+    print(f"Animation successfully generated at {result}")
 ```
 
 ## 故障排除

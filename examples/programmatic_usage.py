@@ -2,16 +2,21 @@
 # -*- coding: utf-8 -*-
 
 """
-Example of programmatic usage of the gemini-gif package.
+Example demonstrating programmatic usage of the Gemini Coder.
 
 This example demonstrates how to use the gemini-gif package in your own Python code
 without using the command-line interface.
 """
 
 import os
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
-from gemini_gif.core.main import generate_animation
+from gemini_coder.core.main import generate_animation
 from loguru import logger
+
+# Add the parent directory to the Python path
+sys.path.append(str(Path(__file__).parent.parent))
 
 # Load API key from .env file
 load_dotenv()
