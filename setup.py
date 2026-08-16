@@ -5,7 +5,7 @@ import os
 import re
 
 # Read the version from __init__.py
-with open(os.path.join("gemini_gif", "__init__.py"), "r") as f:
+with open(os.path.join("gemini_gif", "__init__.py"), "r", encoding="utf-8") as f:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", f.read(), re.M)
     if version_match:
         version = version_match.group(1)
@@ -13,7 +13,7 @@ with open(os.path.join("gemini_gif", "__init__.py"), "r") as f:
         raise RuntimeError("Unable to find version string.")
 
 # Read the long description from README.md
-with open("README.md", "r") as f:
+with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
@@ -48,4 +48,4 @@ setup(
         "Source": "https://github.com/daymade/gemini-gif",
         "Documentation": "https://github.com/daymade/gemini-gif#readme",
     },
-) 
+)
