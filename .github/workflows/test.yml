@@ -46,5 +46,3 @@ jobs:
     - name: Test with pytest
       run: |
         pytest --cov=gemini_gif tests/
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} 
